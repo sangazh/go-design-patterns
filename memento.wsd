@@ -24,3 +24,51 @@ State -- Originator
 Originator --> Memento
 CareTaker *-- Memento
 @enduml
+
+
+@startuml command-facade
+
+interface Command {
+	GetValue() interface{}
+}
+
+class Mute <<bool>> {
+	GetValue{} interface{}
+}
+class Volume <<int>> {
+	GetValue{} interface{}
+}
+
+class Memento {
+	state Command
+}
+
+class CareTaker {
+    mementoList []Memento
+	Add(m memento)
+	Memento(i int) Memento
+}
+
+class Originator {
+	Command Command
+	NewMemento() Memento
+	ExtractAndStoreState(m Memento)
+}
+
+class MementoFacade{
+	Originator
+	CareTaker
+	SaveSettings( Command)
+	RestoreSettings(i int) Command
+}
+
+Command <|-- Mute
+Command <|-- Volume
+Command -- Memento
+Command -- Originator
+Originator --> Memento
+CareTaker "N" *-- Memento
+MementoFacade  *-- CareTaker
+MementoFacade  *-- Originator
+@enduml
+
