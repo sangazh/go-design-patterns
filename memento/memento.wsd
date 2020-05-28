@@ -1,0 +1,26 @@
+@startuml
+class State {
+    Description string	
+}
+
+class Memento {
+	state State
+}
+
+class CareTaker {
+    mementoList []Memento
+	Add(m memento)
+	Memento(i int) (Memento, error)
+}
+
+class Originator {
+	state State
+	NewMemento() Memento
+	ExtractAndStoreState(m Memento)
+}
+
+State -- Memento
+State -- Originator
+Originator --> Memento
+CareTaker *-- Memento
+@enduml
