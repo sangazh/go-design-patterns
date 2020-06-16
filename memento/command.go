@@ -49,9 +49,9 @@ func (c *CareTaker) Pop() Memento {
 	return Memento{}
 }
 
-type MementoFacade struct{
+type MementoFacade struct {
 	originator Originator
-	careTaker CareTaker
+	careTaker  CareTaker
 }
 
 func (m *MementoFacade) SaveSettings(s Command) {
@@ -59,7 +59,7 @@ func (m *MementoFacade) SaveSettings(s Command) {
 	m.careTaker.Add(m.originator.NewMemento())
 }
 
-func (m *MementoFacade) RestoreSettings(i int) Command{
+func (m *MementoFacade) RestoreSettings(i int) Command {
 	m.originator.ExtractAndStoreCommand(m.careTaker.Pop())
 	return m.originator.Command
 }

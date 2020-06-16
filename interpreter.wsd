@@ -1,0 +1,36 @@
+@startuml interpreter
+enum Operator {
+    SUM
+    SUB
+    MUL
+    DIV
+}
+abstract Interpreter {
+    Read() int
+}
+
+class value <<int>> {
+    Read() int
+}
+
+class operationSum {
+    Left Interpreter
+    Right Interpreter
+    Read() int
+}
+
+class operationSub {
+    Left Interpreter
+    Right Interpreter
+    Read() int
+}
+
+Interpreter <|-down- value
+Interpreter <|- operationSub
+Interpreter <|- operationSum
+
+SUM -left-> operationSum
+SUB -left-> operationSub
+
+
+@enduml
