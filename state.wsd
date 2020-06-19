@@ -1,0 +1,40 @@
+@startuml state
+interface GameState{
+    executeState(*GameContext) bool
+}
+class GameContext {
+	SecretNumber int
+	Retries      int
+	Won          bool
+	Next         GameState
+}
+
+class StartState{
+    executeState(*GameContext) bool
+}
+
+class AskState{
+    executeState(*GameContext) bool
+}
+
+class FinishState{
+    executeState(*GameContext) bool
+}
+
+class WinState{
+    executeState(*GameContext) bool
+}
+
+
+StartState --|> GameState
+AskState --|> GameState
+FinishState --|> GameState
+WinState --|> GameState
+LoseState --|> GameState
+GameState ..> GameContext
+
+StartState -> AskState
+AskState -> FinishState
+FinishState --> WinState : Win
+FinishState --> LoseState : Lose
+@enduml
