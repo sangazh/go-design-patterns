@@ -1,0 +1,24 @@
+@startuml observer
+interface Observer {
+	Notify(string)
+	Message() string
+}
+
+class Publisher {
+	ObserverList []Observer
+    AddObserver(o Observer)
+    RemoveObserver(o Observer)
+    NotifyObserver(m string)
+}
+
+class TestObserver {
+	ID      int
+	message string
+    Notify(m string)
+    Message() string
+}
+
+Observer <|-- TestObserver
+Observer "N" --* "1" Publisher
+
+@enduml
