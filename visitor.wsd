@@ -1,0 +1,35 @@
+@startuml visitor
+abstract Visitor{
+    VisitA(MessageA)
+    VisitB(MessageB)
+}
+
+abstract Visitable {
+    Accept(v Visitor)
+}
+
+class MessageVisitor {
+    VisitA(MessageA)
+    VisitB(MessageB)
+}
+
+class MessageA {
+    Msg string
+    Output io.Writer
+    Accept(v Visitor)
+    Print()
+}
+
+class MessageB {
+    Msg string
+    Output io.Writer
+    Accept(v Visitor)
+    Print()
+}
+
+Visitable <... Visitor
+Visitor <|- MessageVisitor
+Visitable <|-- MessageA
+Visitable <|-- MessageB
+
+@enduml
