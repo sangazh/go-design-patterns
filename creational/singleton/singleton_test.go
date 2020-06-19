@@ -11,7 +11,7 @@ func TestGetInstance(t *testing.T) {
 	}
 	expectedCounter := counter1
 
-	currentCount := counter1.AddOne()
+	currentCount := AddOne()
 	if currentCount != 1 {
 		t.Errorf("After calling for the first time, should be 1, but is %d\n", currentCount)
 	}
@@ -21,7 +21,7 @@ func TestGetInstance(t *testing.T) {
 		t.Error("Expected same instance")
 	}
 
-	currentCount = counter2.AddOne()
+	currentCount = AddOne()
 	if currentCount != 2 {
 		t.Errorf("should be 2, but was %d \n", currentCount)
 	}

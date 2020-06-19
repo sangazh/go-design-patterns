@@ -20,7 +20,7 @@ func TestAdapter(t *testing.T) {
 	}
 
 
-	adapter = PrinterAdapter{OldPrinter:nil, Msg: msg}
+	adapter = PrinterAdapter{OldPrinter: nil, Msg: msg}
 	returnedMsg = adapter.PrintStored()
 	if returnedMsg != "Hello World!" {
 		t.Errorf("Message didn't match: %s\n", returnedMsg)

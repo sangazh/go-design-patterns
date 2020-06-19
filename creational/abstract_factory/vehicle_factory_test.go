@@ -10,18 +10,18 @@ func TestMotorbikeFactory(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	motorbikeVehicle, err := motorbikeF.NewVehicle(SportMotorbikeType)
+	motorbikeVehicle, err := NewVehicle(SportMotorbikeType)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	t.Logf("Motorbike vehicle has %d wheels\n", motorbikeVehicle.NumWheels())
+	t.Logf("Motorbike vehicle has %d wheels\n", NumWheels())
 	sportBike, ok := motorbikeVehicle.(Motorbike)
 	if !ok {
 		t.Fatal("Struct assertion has failed")
 	}
 
-	t.Logf("Sport motorbike has type %d\n", sportBike.GetMotorbikeType())
+	t.Logf("Sport motorbike has type %d\n", GetMotorbikeType())
 }
 
 func TestCarFactory(t *testing.T) {
@@ -30,16 +30,16 @@ func TestCarFactory(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	carVehicle, err := carF.NewVehicle(LuxuryCarType)
+	carVehicle, err := NewVehicle(LuxuryCarType)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	t.Logf("Car vehicle has %d wheels\n", carVehicle.NumWheels())
+	t.Logf("Car vehicle has %d wheels\n", NumWheels())
 	luxuryCar, ok := carVehicle.(Car)
 	if !ok {
 		t.Fatal("Struct assertion has failed")
 	}
 
-	t.Logf("Sport car has %d doors.\n", luxuryCar.NumDoors())
+	t.Logf("Sport car has %d doors.\n", NumDoors())
 }

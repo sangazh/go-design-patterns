@@ -1,8 +1,10 @@
-package creational
+package builder
 
 import (
 	"strings"
 	"testing"
+
+	"design/creational"
 )
 
 func TestBuilderPattern(t *testing.T) {
@@ -46,12 +48,12 @@ func TestBuilderPattern(t *testing.T) {
 }
 
 func TestGetPaymentMethodCash(t *testing.T) {
-	payment, err := GetPaymentMethod(Cash)
+	payment, err := creational.GetPaymentMethod(creational.Cash)
 	if err != nil {
 		t.Fatal("A payment method of type 'Cash' must exist")
 	}
 
-	msg := payment.Pay(10.30)
+	msg := creational.Pay(10.30)
 	if !strings.Contains(msg, "paid using cash") {
 		t.Error("The cash payment method message wasn't correct")
 	}
@@ -59,12 +61,12 @@ func TestGetPaymentMethodCash(t *testing.T) {
 }
 
 func TestGetPaymentMethodDebitCard(t *testing.T) {
-	payment, err := GetPaymentMethod(DebitCard)
+	payment, err := creational.GetPaymentMethod(creational.DebitCard)
 	if err != nil {
 		t.Fatal("A payment method of type 'DebitCard' must exist")
 	}
 
-	msg := payment.Pay(22.30)
+	msg := creational.Pay(22.30)
 	if !strings.Contains(msg, "paid using debit card") {
 		t.Error("The debit card payment method message wasn't correct")
 	}
@@ -72,7 +74,7 @@ func TestGetPaymentMethodDebitCard(t *testing.T) {
 }
 
 func TestGetPaymentMethod(t *testing.T) {
-	_, err := GetPaymentMethod(20)
+	_, err := creational.GetPaymentMethod(20)
 	if err == nil {
 		t.Error("A payment method with ID 20 must return an error")
 	}

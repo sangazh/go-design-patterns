@@ -6,7 +6,7 @@ import (
 
 func TestCareTaker_Add(t *testing.T) {
 	originator := originator{}
-	originator.state = State{Description:"Idle"}
+	originator.state = State{Description: "Idle"}
 
 	careTaker := careTaker{}
 	mem :=originator.NewMemento()
@@ -27,7 +27,7 @@ func TestCareTaker_Memento(t *testing.T) {
 	originator := originator{}
 	careTaker := careTaker{}
 
-	originator.state = State{Description:"Idle"}
+	originator.state = State{Description: "Idle"}
 	careTaker.Add(originator.NewMemento())
 
 	mem, err := careTaker.Memento(0)

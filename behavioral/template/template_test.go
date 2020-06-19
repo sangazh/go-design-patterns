@@ -8,7 +8,7 @@ import (
 func TestTemplate_ExecuteAlgorithm(t *testing.T) {
 	t.Run("use interfaces", func(t *testing.T) {
 		s := &TestStruct{&TemplateTmpl{}}
-		res := s.ExecuteAlgorithm(s)
+		res := ExecuteAlgorithm(s)
 		expected := "world"
 		if !strings.Contains(res, expected) {
 			t.Error("not expected")

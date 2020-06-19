@@ -23,14 +23,14 @@ func TestProduct_Accept(t *testing.T) {
 	PriceVisitor := new(PriceVisitor)
 
 	for _, p := range products {
-		p.Accept(PriceVisitor)
+		Accept(PriceVisitor)
 	}
 
 	fmt.Printf("Total: %f\n", PriceVisitor.Sum)
 
 	nameVisitor := new(NamePrinter)
 	for _, p := range products {
-		p.Accept(nameVisitor)
+		Accept(nameVisitor)
 	}
 
 	fmt.Printf("\nProduct list:\n -------\n%s", nameVisitor.ProductList)

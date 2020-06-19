@@ -46,7 +46,7 @@ func TestTestObserver_Notify(t *testing.T) {
 		msg := "Hello World"
 		p.NotifyObserver(msg)
 		for _, o := range p.ObserverList {
-			t.Log(o.Message())
+			t.Log(Message())
 		}
 	})
 }

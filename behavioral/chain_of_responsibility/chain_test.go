@@ -8,9 +8,9 @@ import (
 
 func TestCreateDefaultChain(t *testing.T) {
 	myWriter := new(myTestWriter)
-	writerLogger := &WriterLogger{Writer:myWriter}
-	second := &SecondLogger{NextChain:writerLogger}
-	chain := FirstLogger{NextChain:second}
+	writerLogger := &WriterLogger{Writer: myWriter}
+	second := &SecondLogger{NextChain: writerLogger}
+	chain := FirstLogger{NextChain: second}
 
 	t.Run("3 loggers", func(t *testing.T) {
 		chain.Next("message that breaks the chain\n")

@@ -25,6 +25,6 @@ func TestCompositeSwimmerB(t *testing.T) {
 		Trainer: &Athlete{},
 		Swimmer: &SwimmerImpl{},
 	}
-	swimmer.Train()
-	swimmer.Swim()
+	Train()
+	Swim()
 }

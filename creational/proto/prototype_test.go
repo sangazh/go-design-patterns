@@ -10,7 +10,7 @@ func TestClone(t *testing.T) {
 		t.Fatal("Received cache was nil")
 	}
 
-	item1, err := shirtCache.GetClone(White)
+	item1, err := GetClone(White)
 	if err != nil {
 		t.Error(err)
 	}
@@ -26,7 +26,7 @@ func TestClone(t *testing.T) {
 
 	shirt1.SKU = "abbcc"
 
-	item2, err := shirtCache.GetClone(White)
+	item2, err := GetClone(White)
 	if err != nil {
 		t.Error(err)
 	}
