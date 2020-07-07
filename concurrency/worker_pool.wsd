@@ -1,0 +1,41 @@
+@startuml class
+class Request {
+    Data interface{}
+    Handler RequestHandler
+}
+class RequestHandler <<func(interface{})>>
+
+interface WorkerLauncher {
+    LaunchWorker(in chan Request)
+}
+
+class PrefixSuffixWorker {
+    id int
+	PrefixS string
+	SuffixS string
+    LaunchWorker(in chan Request)
+    uppercase(in <-chan Request) <-chan Request
+    append(in <-chan Request) <-chan Request
+    prefix(in <-chan Request)
+}
+
+interface Dispatcher{
+	LaunchWorker(w WorkerLauncher)
+	MakeRequest(Request)
+	Stop()
+}
+
+class dispatcher {
+    inCh chan Request
+    LaunchWorker(w WorkerLauncher)
+    Stop()
+    MakeRequest(r Request)
+}
+ 
+WorkerLauncher <|-- PrefixSuffixWorker
+
+Dispatcher <|-- dispatcher
+WorkerLauncher .> Dispatcher
+RequestHandler .> Request
+Request .> WorkerLauncher
+@enduml

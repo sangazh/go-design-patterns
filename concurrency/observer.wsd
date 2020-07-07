@@ -1,0 +1,40 @@
+@startuml class
+interface Subscriber {
+	Notify(interface{}) error
+	Close()
+}
+interface Publisher {
+	start()
+	AddSubscriberCh() chan<- Subscriber
+	RemoveSubscriberCh() chan<- Subscriber
+	PublishingCh() chan<- interface{}
+	Stop()
+}
+
+class writerSubscriber {
+	in  chan interface{}
+	id int
+	Writer io.Writer
+    Notify(msg interface{}) (err error)
+    Close()
+}
+
+class publisher {
+	subscribers []Subscriber
+	addSubCh chan Subscriber
+	removeSubCh chan Subscriber
+	in chan interface{}
+	stop chan struct{}
+
+    start()
+    AddSubscriberCh() chan<- Subscriber
+    RemoveSubscriberCh() chan<- Subscriber
+    PublishingCh() chan<- interface{}
+    Stop()
+}
+
+Subscriber .left..* Publisher
+Subscriber <|-- writerSubscriber
+Publisher <|-- publisher
+
+@enduml
